@@ -11,11 +11,9 @@ package bd_01;
  */
 public class BD_01 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Portada por= new Portada();
+        por.setVisible(true);
     }
     
 }

@@ -7,17 +7,23 @@ package bd_01;
 import java.sql.*;
 import javax.swing.*;
 import net.proteanit.sql.DbUtils;
+import conexion.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Alan
  */
 public class Vendedores extends javax.swing.JFrame {
-
+    Connection conexion;
+    Conexion cone= new Conexion();
     /**
      * Creates new form Vendedores
      */
     public Vendedores() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        MostrarVendedores();
     }
 
     /**
@@ -119,6 +125,11 @@ public class Vendedores extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbVendedores);
 
         btBuscar.setText("Buscar");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,20 +249,103 @@ public class Vendedores extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEspecialidadActionPerformed
 
     private void btModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarDatosActionPerformed
-        // TODO add your handling code here:
+        try {
+            String id= tfIDBusqueda.getText().trim();
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("update vendedor set nombre=?, apellido=?, especialidad=?, comisión=? where id_vendedor="+id);
+            pst.setString(1, tfNombre.getText().trim());
+            pst.setString(2, tfApellido.getText().trim());
+            pst.setString(3, tfEspecialidad.getText().trim());
+            pst.setString(4, tfComision.getText().trim());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Registro modificado","Registro modificado",JOptionPane.INFORMATION_MESSAGE);
+            MostrarVendedores();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
     }//GEN-LAST:event_btModificarDatosActionPerformed
 
     private void btBajarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarDatosActionPerformed
+        try {
+            conexion= cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("delete from vendedor where id_vendedor= ?");
+            pst.setString(1, tfIDBusqueda.getText().trim());
+            pst.executeUpdate();
+            tfNombre.setText("");
+            tfApellido.setText("");
+            tfEspecialidad.setText("");
+            tfComision.setText("");
+            
+            JOptionPane.showMessageDialog(null,"Registro eliminado", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
+            MostrarVendedores();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btBajarDatosActionPerformed
 
     private void btSubirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirDatosActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("insert into vendedor values(?,?,?,?,?)");
+            pst.setString(1,"0");
+            pst.setString(2, tfNombre.getText().trim());
+            pst.setString(3, tfApellido.getText().trim());
+            pst.setString(4, tfEspecialidad.getText().trim());
+            pst.setString(5, tfComision.getText().trim());
+            pst.executeUpdate();
+            tfNombre.setText("");
+            tfApellido.setText("");
+            tfEspecialidad.setText("");
+            tfComision.setText("");
+            JOptionPane.showMessageDialog(null,"Registro exitoso","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
+            MostrarVendedores();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btSubirDatosActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        try {
+        conexion= cone.getConexion();
+        PreparedStatement pst= conexion.prepareStatement("select * from vendedor where id_vendedor= ?");
+        pst.setString(1, tfIDBusqueda.getText().trim());
+        ResultSet rs=pst.executeQuery();
+            if (rs.next()) {
+                tfNombre.setText(rs.getString("nombre"));
+                tfApellido.setText(rs.getString("apellido"));
+                tfEspecialidad.setText(rs.getString("especialidad"));
+                tfComision.setText(rs.getString("comisión"));
+            } else{
+                JOptionPane.showMessageDialog(null,"Cliente no encontrado","Cliente no encontrado",JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btBuscarActionPerformed
 
     /**
      * @param args the command line arguments
      */
+     public void MostrarVendedores(){
+        try {
+            
+            conexion=cone.getConexion();
+            Statement stm=conexion.createStatement();
+            ResultSet rs =stm.executeQuery("select * from vendedor");
+            tbVendedores.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+  }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -283,6 +377,7 @@ public class Vendedores extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBajarDatos;

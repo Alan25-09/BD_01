@@ -5,12 +5,15 @@
  */
 package bd_01;
 import java.sql.*;
+import net.proteanit.sql.DbUtils;
+import conexion.Conexion;
 /**
  *
  * @author Alan
  */
 public class Venta extends javax.swing.JFrame {
-
+Connection conexion;
+Conexion cone= new Conexion();
     /**
      * Creates new form Venta
      */
@@ -48,20 +51,12 @@ public class Venta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbAtras_C1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbNombC1 = new javax.swing.JLabel();
-        lb_ApellidoC1 = new javax.swing.JLabel();
-        lbTelefonoC1 = new javax.swing.JLabel();
-        tfNombre1 = new javax.swing.JTextField();
-        tfApellido1 = new javax.swing.JTextField();
-        tfTelefono1 = new javax.swing.JTextField();
-        btSubirC1 = new javax.swing.JButton();
-        btBajarC1 = new javax.swing.JButton();
-        btModificarC1 = new javax.swing.JButton();
-        lb_IDC1 = new javax.swing.JLabel();
-        tfID1 = new javax.swing.JTextField();
-        btBuscarC1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbCliente1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbCliente2 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbCliente3 = new javax.swing.JTable();
 
         lbAtras_C.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lbAtras_C.setText("Atras <<<");
@@ -145,58 +140,6 @@ public class Venta extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
         jLabel2.setText("VENTA");
 
-        lbNombC1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lbNombC1.setText("Nombre");
-
-        lb_ApellidoC1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lb_ApellidoC1.setText("Apellido");
-
-        lbTelefonoC1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lbTelefonoC1.setText("Telefono");
-
-        tfApellido1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfApellido1ActionPerformed(evt);
-            }
-        });
-
-        tfTelefono1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTelefono1ActionPerformed(evt);
-            }
-        });
-
-        btSubirC1.setText("Subir Datos");
-        btSubirC1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSubirC1ActionPerformed(evt);
-            }
-        });
-
-        btBajarC1.setText("Dar de baja");
-        btBajarC1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBajarC1ActionPerformed(evt);
-            }
-        });
-
-        btModificarC1.setText("Modificar Datos");
-        btModificarC1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarC1ActionPerformed(evt);
-            }
-        });
-
-        lb_IDC1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lb_IDC1.setText("ID_Cliente");
-
-        btBuscarC1.setText("Buscar");
-        btBuscarC1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarC1ActionPerformed(evt);
-            }
-        });
-
         tbCliente1.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         tbCliente1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -211,93 +154,73 @@ public class Venta extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbCliente1);
 
+        tbCliente2.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        tbCliente2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID_Cliente", "Nombre", "Apellido", "Telefono"
+            }
+        ));
+        jScrollPane3.setViewportView(tbCliente2);
+
+        tbCliente3.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        tbCliente3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID_Cliente", "Nombre", "Apellido", "Telefono"
+            }
+        ));
+        jScrollPane4.setViewportView(tbCliente3);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(355, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(332, 332, 332))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(330, 330, 330))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(161, 161, 161)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbTelefonoC1)
-                                .addComponent(lb_ApellidoC1)
-                                .addComponent(lbNombC1))
-                            .addGap(26, 26, 26)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(tfNombre1)
-                                .addComponent(tfApellido1)
-                                .addComponent(tfTelefono1))
-                            .addGap(59, 59, 59)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btBajarC1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btSubirC1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                                    .addGap(46, 46, 46)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btBuscarC1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(lb_IDC1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(tfID1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(btModificarC1))
-                            .addGap(21, 21, 21))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 612, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(22, 22, 22)))
+                    .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 634, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addContainerGap(480, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(281, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(63, 63, 63)
                     .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(40, 40, 40)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lbNombC1)
-                                        .addComponent(tfNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(21, 21, 21)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lb_ApellidoC1)
-                                        .addComponent(tfApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btSubirC1)
-                                        .addComponent(lb_IDC1)
-                                        .addComponent(tfID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btBuscarC1))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(59, 59, 59)
-                            .addComponent(btBajarC1)))
-                    .addGap(21, 21, 21)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbTelefonoC1)
-                        .addComponent(tfTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btModificarC1))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(63, 63, 63)))
+                    .addContainerGap(503, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,8 +248,8 @@ public class Venta extends javax.swing.JFrame {
     private void btSubirCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirCActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");//establece la conexion con la BD
-            PreparedStatement pst= cn.prepareStatement("insert into cliente values(?,?,?,?)");//Valores que se insertaran en la tabla "nombre_tabla"
+            conexion=cone.getConexion();//establece la conexion con la BD
+            PreparedStatement pst= conexion.prepareStatement("insert into cliente values(?,?,?,?)");//Valores que se insertaran en la tabla "nombre_tabla"
             pst.setString(1,"0");
             pst.setString(2,tfNombre.getText().trim());
             pst.setString(3,tfApellido.getText().trim());
@@ -346,8 +269,8 @@ public class Venta extends javax.swing.JFrame {
     private void btBajarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarCActionPerformed
 
         try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("delete from cliente where ID= ?");
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("delete from cliente where ID= ?");
 
             pst.setString(1, tfID.getText().trim());
             pst.executeUpdate();
@@ -364,9 +287,8 @@ public class Venta extends javax.swing.JFrame {
     private void btModificarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarCActionPerformed
         try {
             String id= tfID.getText().trim();
-
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("update cliente set Nom=?, Ape=?, Tel=? where ID="+id);
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("update cliente set Nom=?, Ape=?, Tel=? where ID="+id);
             pst.setString(1,tfNombre.getText().trim());
             pst.setString(2, tfApellido.getText().trim());
             pst.setString(3,tfTelefono.getText().trim());
@@ -382,8 +304,8 @@ public class Venta extends javax.swing.JFrame {
 
     private void btBuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCActionPerformed
         try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("select * from cliente where ID= ?");
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("select * from cliente where ID= ?");
             pst.setString(1,tfID.getText().trim());
             ResultSet rs= pst.executeQuery();
             if (rs.next()) {
@@ -398,91 +320,6 @@ public class Venta extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btBuscarCActionPerformed
-
-    private void tfApellido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellido1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfApellido1ActionPerformed
-
-    private void tfTelefono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefono1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfTelefono1ActionPerformed
-
-    private void btSubirC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirC1ActionPerformed
-        // TODO add your handling code here:
-        try{
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");//establece la conexion con la BD
-            PreparedStatement pst= cn.prepareStatement("insert into cliente values(?,?,?,?)");//Valores que se insertaran en la tabla "nombre_tabla"
-            pst.setString(1,"0");
-            pst.setString(2,tfNombre.getText().trim());
-            pst.setString(3,tfApellido.getText().trim());
-            pst.setString(4,tfTelefono.getText().trim());
-            pst.executeUpdate();
-
-            tfNombre.setText("");
-            tfApellido.setText("");
-            tfTelefono.setText("");
-           // lbStatus.setText("Registro exitoso!!");
-            //MostrarClientes();
-
-        }catch(Exception e){
-        }
-    }//GEN-LAST:event_btSubirC1ActionPerformed
-
-    private void btBajarC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarC1ActionPerformed
-
-        try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("delete from cliente where ID= ?");
-
-            pst.setString(1, tfID.getText().trim());
-            pst.executeUpdate();
-            tfNombre.setText("");
-            tfApellido.setText("");
-            tfTelefono.setText("");
-
-            //lbStatus.setText("Datos Borrados");
-           // MostrarClientes();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btBajarC1ActionPerformed
-
-    private void btModificarC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarC1ActionPerformed
-        try {
-            String id= tfID.getText().trim();
-
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("update cliente set Nom=?, Ape=?, Tel=? where ID="+id);
-            pst.setString(1,tfNombre.getText().trim());
-            pst.setString(2, tfApellido.getText().trim());
-            pst.setString(3,tfTelefono.getText().trim());
-            pst.executeUpdate();
-
-           // lbStatus.setText("Modificación exitosa");
-           // MostrarClientes();
-
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_btModificarC1ActionPerformed
-
-    private void btBuscarC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarC1ActionPerformed
-        try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/factura?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("select * from cliente where ID= ?");
-            pst.setString(1,tfID.getText().trim());
-            ResultSet rs= pst.executeQuery();
-            if (rs.next()) {
-                tfNombre.setText(rs.getString("Nom"));
-                tfApellido.setText(rs.getString("Ape"));
-                tfTelefono.setText(rs.getString("Tel"));
-            } else {
-                //JOptionPane.showMessageDialog(null,"cliente no registrado");
-
-            }
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btBuscarC1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,37 +358,29 @@ public class Venta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBajarC;
-    private javax.swing.JButton btBajarC1;
     private javax.swing.JButton btBuscarC;
-    private javax.swing.JButton btBuscarC1;
     private javax.swing.JButton btModificarC;
-    private javax.swing.JButton btModificarC1;
     private javax.swing.JButton btSubirC;
-    private javax.swing.JButton btSubirC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lbAtras_C;
     private javax.swing.JLabel lbAtras_C1;
     private javax.swing.JLabel lbNombC;
-    private javax.swing.JLabel lbNombC1;
     private javax.swing.JLabel lbTelefonoC;
-    private javax.swing.JLabel lbTelefonoC1;
     private javax.swing.JLabel lb_ApellidoC;
-    private javax.swing.JLabel lb_ApellidoC1;
     private javax.swing.JLabel lb_IDC;
-    private javax.swing.JLabel lb_IDC1;
     private javax.swing.JTable tbCliente;
     private javax.swing.JTable tbCliente1;
+    private javax.swing.JTable tbCliente2;
+    private javax.swing.JTable tbCliente3;
     private javax.swing.JTextField tfApellido;
-    private javax.swing.JTextField tfApellido1;
     private javax.swing.JTextField tfID;
-    private javax.swing.JTextField tfID1;
     private javax.swing.JTextField tfNombre;
-    private javax.swing.JTextField tfNombre1;
     private javax.swing.JTextField tfTelefono;
-    private javax.swing.JTextField tfTelefono1;
     // End of variables declaration//GEN-END:variables
 }

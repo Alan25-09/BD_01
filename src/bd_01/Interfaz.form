@@ -244,6 +244,9 @@
               <Image iconType="2" name="C:\Users\Alan\Documents\POO\imagenes\bolsa-de-la-compra.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbVentasMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

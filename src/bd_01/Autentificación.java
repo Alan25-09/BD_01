@@ -4,18 +4,24 @@
  * and open the template in the editor.
  */
 package bd_01;
-
+import java.sql.*;
+import conexion.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
 /**
  *
  * @author Alan
  */
 public class Autentificación extends javax.swing.JFrame {
-
+Connection conexion;
+Conexion cone= new Conexion();
     /**
      * Creates new form Autentificación
      */
     public Autentificación() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -28,21 +34,21 @@ public class Autentificación extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        tfUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        tfContra = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        jTextField1.setText("USUARIO");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfUsuario.setText("USUARIO");
+        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfUsuarioActionPerformed(evt);
             }
         });
 
@@ -52,6 +58,11 @@ public class Autentificación extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 102, 102));
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alan\\Documents\\POO\\imagenes\\iniciar-sesion.png")); // NOI18N
         jButton2.setBorderPainted(false);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -61,7 +72,7 @@ public class Autentificación extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jLabel2.setText("INICIAR SESIÓN");
 
-        jPasswordField1.setText("jPasswordField1");
+        tfContra.setText("jPasswordField1");
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alan\\Documents\\POO\\imagenes\\usuario.png")); // NOI18N
 
@@ -77,10 +88,10 @@ public class Autentificación extends javax.swing.JFrame {
                 .addContainerGap(335, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfContra, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(326, 326, 326))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -99,9 +110,9 @@ public class Autentificación extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfContra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -126,13 +137,39 @@ public class Autentificación extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    try {
+        String contraseña = null;
+        String contra;
+        conexion= cone.getConexion();
+        PreparedStatement pst= conexion.prepareStatement("select * from vendedor where id_vendedor= ?");
+        pst.setString(1, tfUsuario.getText().trim());
+        ResultSet rs=pst.executeQuery();
+        if(rs.next()){
+        contraseña=rs.getString("contraseña");
+        }
+        contra= tfContra.getText();
+        if (contra.equals(contraseña)) {
+        JOptionPane.showMessageDialog(null, "Exito","Acceso Permitido",JOptionPane.INFORMATION_MESSAGE);
+        Interfaz inter= new Interfaz();
+        inter.setVisible(true);
+        this.setVisible(false);
+        }else{
+        JOptionPane.showMessageDialog(null,"Error","Usuario no encontrado",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null,"Error","Usuario no encontrado",JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -175,7 +212,7 @@ public class Autentificación extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField tfContra;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

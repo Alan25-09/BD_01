@@ -7,13 +7,15 @@ package bd_01;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import conexion.Conexion;
 
 /**
  *
  * @author Alan
  */
 public class Cliente extends javax.swing.JFrame {
-    
+   Conexion cone= new Conexion();
+   Connection conexion;
 
     /**
      * Creates new form Cliente
@@ -22,6 +24,7 @@ public class Cliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         MostrarClientes();
+        
     }
 
     /**
@@ -243,8 +246,8 @@ public class Cliente extends javax.swing.JFrame {
     private void btSubirCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirCActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");//establece la conexion con la BD
-            PreparedStatement pst= cn.prepareStatement("insert into clientes values(?,?,?,?)");//Valores que se insertaran en la tabla "nombre_tabla"
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("insert into clientes values(?,?,?,?)");//Valores que se insertaran en la tabla "nombre_tabla"
             pst.setString(1,"0");
             pst.setString(2,tfNombre.getText().trim());
             pst.setString(3,tfApellido.getText().trim());
@@ -267,8 +270,9 @@ public class Cliente extends javax.swing.JFrame {
     private void btBajarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarCActionPerformed
         
         try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("delete from clientes where id_cliente= ?");
+            
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("delete from clientes where id_cliente= ?");
             
             pst.setString(1, tfID.getText().trim());
             pst.executeUpdate();
@@ -285,8 +289,8 @@ public class Cliente extends javax.swing.JFrame {
 
     private void btBuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCActionPerformed
             try {
-         Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-         PreparedStatement pst= cn.prepareStatement("select * from clientes where id_cliente= ?");
+         conexion=cone.getConexion();
+         PreparedStatement pst= conexion.prepareStatement("select * from clientes where id_cliente= ?");
          pst.setString(1,tfID.getText().trim());
          ResultSet rs= pst.executeQuery();//ResultSet es para consultar los datos
                 if (rs.next()) {
@@ -309,8 +313,8 @@ public class Cliente extends javax.swing.JFrame {
         try {
             String id= tfID.getText().trim();
             
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("update clientes set nombre=?, apellido=?, telefono=? where id_cliente="+id);
+            conexion=cone.getConexion();           
+            PreparedStatement pst= conexion.prepareStatement("update clientes set nombre=?, apellido=?, telefono=? where id_cliente="+id);
             pst.setString(1,tfNombre.getText().trim());
             pst.setString(2, tfApellido.getText().trim());
             pst.setString(3,tfTelefono.getText().trim());
@@ -325,9 +329,8 @@ public class Cliente extends javax.swing.JFrame {
 
     public void MostrarClientes(){
         try {
-            
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            Statement stm=cn.createStatement();
+            conexion=cone.getConexion();
+            Statement stm=conexion.createStatement();
             ResultSet rs =stm.executeQuery("select * from clientes");
             tbCliente.setModel(DbUtils.resultSetToTableModel(rs));
             

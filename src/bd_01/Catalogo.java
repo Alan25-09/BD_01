@@ -5,17 +5,17 @@
  */
 package bd_01;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.proteanit.sql.DbUtils;
 import javax.swing.*;
+import conexion.Conexion;
 /**
  * 
  *
  * @author Alan
  */
 public class Catalogo extends javax.swing.JFrame {
-
+    Conexion cone= new Conexion();
+    Connection conexion;
     /**
      * Creates new form Catalogo
      */
@@ -274,8 +274,8 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void btSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirActionPerformed
         try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("insert into catalogo values(?,?,?,?,?)");
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("insert into catalogo values(?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, tfNom.getText().trim());
             pst.setString(3,tfPrecio.getText().trim());
@@ -295,8 +295,8 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void btBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarActionPerformed
         try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("delete from catalogo where id_catalogo=?");
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("delete from catalogo where id_catalogo=?");
             pst.setString(1,tfID.getText().trim());
             pst.executeUpdate();
             tfNom.setText("");
@@ -314,8 +314,8 @@ public class Catalogo extends javax.swing.JFrame {
         try {
             String id= tfID.getText().trim();
             
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("update clientes set nombre=?, precioUnitario=?, existencia=?, descripción=? where id_catalogo="+id);
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("update catalogo set nombre=?, precioUnitario=?, existencia=?, descripción=? where id_catalogo="+id);
             pst.setString(1,tfNom.getText().trim());
             pst.setString(2,tfPrecio.getText().trim());
             pst.setString(3,tfExistencia.getText().trim());
@@ -331,8 +331,8 @@ public class Catalogo extends javax.swing.JFrame {
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         try {
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            PreparedStatement pst= cn.prepareStatement("select * from catalogo where id_catalogo= ?");
+            conexion=cone.getConexion();
+            PreparedStatement pst= conexion.prepareStatement("select * from catalogo where id_catalogo= ?");
             pst.setString(1, tfID.getText().trim());
             ResultSet rs= pst.executeQuery();
             if (rs.next()) {
@@ -353,9 +353,8 @@ public class Catalogo extends javax.swing.JFrame {
   public void MostrarCatalogo(){
         try {
             
-            
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost:3307/poo_ventas?useSSL=false","root","");
-            Statement stm=cn.createStatement();
+            conexion=cone.getConexion();
+            Statement stm=conexion.createStatement();
             ResultSet rs =stm.executeQuery("select * from catalogo");
             tbCatalogo.setModel(DbUtils.resultSetToTableModel(rs));
             

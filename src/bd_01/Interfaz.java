@@ -100,6 +100,11 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         lbVentas.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alan\\Documents\\POO\\imagenes\\bolsa-de-la-compra.png")); // NOI18N
+        lbVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbVentasMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,6 +219,13 @@ public class Interfaz extends javax.swing.JFrame {
     this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_lbVendedoresMouseClicked
+
+    private void lbVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbVentasMouseClicked
+        Venta ven= new Venta();
+        ven.setVisible(true);
+        this.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbVentasMouseClicked
 
     /**
      * @param args the command line arguments
