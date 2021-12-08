@@ -102,9 +102,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="tfUsuario">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="USUARIO"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUsuarioActionPerformed"/>
           </Events>
@@ -141,9 +138,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfContra">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>

@@ -9,6 +9,7 @@ import conexion.Conexion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import conexion.TextPrompt;
 /**
  *
  * @author Alan
@@ -16,12 +17,15 @@ import javax.swing.*;
 public class Autentificación extends javax.swing.JFrame {
 Connection conexion;
 Conexion cone= new Conexion();
+
     /**
      * Creates new form Autentificación
      */
     public Autentificación() {
         initComponents();
         this.setLocationRelativeTo(null);
+        TextPrompt tp= new TextPrompt("ID VENDEDOR", tfUsuario);
+        TextPrompt tp1= new TextPrompt("CONTRASEÑA",tfContra);
     }
 
     /**
@@ -45,7 +49,6 @@ Conexion cone= new Conexion();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        tfUsuario.setText("USUARIO");
         tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfUsuarioActionPerformed(evt);
@@ -71,8 +74,6 @@ Conexion cone= new Conexion();
 
         jLabel2.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         jLabel2.setText("INICIAR SESIÓN");
-
-        tfContra.setText("jPasswordField1");
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alan\\Documents\\POO\\imagenes\\usuario.png")); // NOI18N
 
@@ -162,8 +163,8 @@ Conexion cone= new Conexion();
         Interfaz inter= new Interfaz();
         inter.setVisible(true);
         this.setVisible(false);
-        }else{
-        JOptionPane.showMessageDialog(null,"Error","Usuario no encontrado",JOptionPane.ERROR_MESSAGE);
+        }else {
+        JOptionPane.showMessageDialog(null,"Error","Error en ID o Contraseña",JOptionPane.ERROR_MESSAGE);
         }
         
     } catch (Exception e) {

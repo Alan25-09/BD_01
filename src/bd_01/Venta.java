@@ -7,6 +7,14 @@ package bd_01;
 import java.sql.*;
 import net.proteanit.sql.DbUtils;
 import conexion.Conexion;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Alan
@@ -57,6 +65,7 @@ Conexion cone= new Conexion();
         tbCliente2 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbCliente3 = new javax.swing.JTable();
+        brPDF = new javax.swing.JButton();
 
         lbAtras_C.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lbAtras_C.setText("Atras <<<");
@@ -182,6 +191,13 @@ Conexion cone= new Conexion();
         ));
         jScrollPane4.setViewportView(tbCliente3);
 
+        brPDF.setText("Generar PDF");
+        brPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -198,7 +214,10 @@ Conexion cone= new Conexion();
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(brPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -215,7 +234,9 @@ Conexion cone= new Conexion();
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addGap(94, 94, 94)
+                .addComponent(brPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(63, 63, 63)
@@ -246,42 +267,12 @@ Conexion cone= new Conexion();
     }//GEN-LAST:event_tfTelefonoActionPerformed
 
     private void btSubirCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirCActionPerformed
-        // TODO add your handling code here:
-        try{
-            conexion=cone.getConexion();//establece la conexion con la BD
-            PreparedStatement pst= conexion.prepareStatement("insert into cliente values(?,?,?,?)");//Valores que se insertaran en la tabla "nombre_tabla"
-            pst.setString(1,"0");
-            pst.setString(2,tfNombre.getText().trim());
-            pst.setString(3,tfApellido.getText().trim());
-            pst.setString(4,tfTelefono.getText().trim());
-            pst.executeUpdate();
-
-            tfNombre.setText("");
-            tfApellido.setText("");
-            tfTelefono.setText("");
-            //lbStatus.setText("Registro exitoso!!");
-          //  MostrarClientes();
-
-        }catch(Exception e){
-        }
+ 
     }//GEN-LAST:event_btSubirCActionPerformed
 
     private void btBajarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarCActionPerformed
 
-        try {
-            conexion=cone.getConexion();
-            PreparedStatement pst= conexion.prepareStatement("delete from cliente where ID= ?");
-
-            pst.setString(1, tfID.getText().trim());
-            pst.executeUpdate();
-            tfNombre.setText("");
-            tfApellido.setText("");
-            tfTelefono.setText("");
-
-          //  lbStatus.setText("Datos Borrados");
-            //MostrarClientes();
-        } catch (Exception e) {
-        }
+        
     }//GEN-LAST:event_btBajarCActionPerformed
 
     private void btModificarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarCActionPerformed
@@ -321,6 +312,27 @@ Conexion cone= new Conexion();
         }
     }//GEN-LAST:event_btBuscarCActionPerformed
 
+    private void brPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brPDFActionPerformed
+        Document documento= new Document();
+         try {
+            
+            String ruta= System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/Desktop/Factura.pdf"));
+            documento.open();
+            
+            PdfPTable tabla= new PdfPTable(7);
+            tabla.addCell("Numero de Factura");
+            tabla.addCell("Numero del cliente");
+            tabla.addCell("ID del producto");
+            tabla.addCell("ID del vendedor");
+            tabla.addCell("Fecha");
+            tabla.addCell("Descripción");
+            tabla.addCell("Total");
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_brPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -357,6 +369,7 @@ Conexion cone= new Conexion();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton brPDF;
     private javax.swing.JButton btBajarC;
     private javax.swing.JButton btBuscarC;
     private javax.swing.JButton btModificarC;

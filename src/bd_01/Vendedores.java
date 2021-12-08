@@ -54,6 +54,8 @@ public class Vendedores extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbVendedores = new javax.swing.JTable();
         btBuscar = new javax.swing.JButton();
+        lbContraseña = new javax.swing.JLabel();
+        tfContraseña = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +133,9 @@ public class Vendedores extends javax.swing.JFrame {
             }
         });
 
+        lbContraseña.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        lbContraseña.setText("Contraseña");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -143,13 +148,15 @@ public class Vendedores extends javax.swing.JFrame {
                             .addComponent(lbEspecialidad)
                             .addComponent(lbApellido)
                             .addComponent(lbNombre)
-                            .addComponent(lbComision))
+                            .addComponent(lbComision)
+                            .addComponent(lbContraseña))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                             .addComponent(tfApellido)
                             .addComponent(tfEspecialidad)
-                            .addComponent(tfComision))
+                            .addComponent(tfComision)
+                            .addComponent(tfContraseña))
                         .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btModificarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,7 +228,11 @@ public class Vendedores extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbComision)
                             .addComponent(tfComision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbContraseña)
+                    .addComponent(tfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125))
         );
@@ -252,11 +263,12 @@ public class Vendedores extends javax.swing.JFrame {
         try {
             String id= tfIDBusqueda.getText().trim();
             conexion=cone.getConexion();
-            PreparedStatement pst= conexion.prepareStatement("update vendedor set nombre=?, apellido=?, especialidad=?, comisión=? where id_vendedor="+id);
+            PreparedStatement pst= conexion.prepareStatement("update vendedor set nombre=?, apellido=?, especialidad=?, comisión=?, contraseña=? where id_vendedor="+id);
             pst.setString(1, tfNombre.getText().trim());
             pst.setString(2, tfApellido.getText().trim());
             pst.setString(3, tfEspecialidad.getText().trim());
             pst.setString(4, tfComision.getText().trim());
+            pst.setString(5, tfContraseña.getText().trim());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Registro modificado","Registro modificado",JOptionPane.INFORMATION_MESSAGE);
             MostrarVendedores();
@@ -277,6 +289,7 @@ public class Vendedores extends javax.swing.JFrame {
             tfApellido.setText("");
             tfEspecialidad.setText("");
             tfComision.setText("");
+            tfContraseña.setText("");
             
             JOptionPane.showMessageDialog(null,"Registro eliminado", "Registro eliminado", JOptionPane.INFORMATION_MESSAGE);
             MostrarVendedores();
@@ -290,17 +303,19 @@ public class Vendedores extends javax.swing.JFrame {
         
         try {
             conexion=cone.getConexion();
-            PreparedStatement pst= conexion.prepareStatement("insert into vendedor values(?,?,?,?,?)");
+            PreparedStatement pst= conexion.prepareStatement("insert into vendedor values(?,?,?,?,?,?)");
             pst.setString(1,"0");
             pst.setString(2, tfNombre.getText().trim());
             pst.setString(3, tfApellido.getText().trim());
             pst.setString(4, tfEspecialidad.getText().trim());
             pst.setString(5, tfComision.getText().trim());
+            pst.setString(6, tfContraseña.getText().trim());
             pst.executeUpdate();
             tfNombre.setText("");
             tfApellido.setText("");
             tfEspecialidad.setText("");
             tfComision.setText("");
+            tfContraseña.setText("");
             JOptionPane.showMessageDialog(null,"Registro exitoso","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
             MostrarVendedores();
         } catch (Exception e) {
@@ -319,6 +334,7 @@ public class Vendedores extends javax.swing.JFrame {
                 tfApellido.setText(rs.getString("apellido"));
                 tfEspecialidad.setText(rs.getString("especialidad"));
                 tfComision.setText(rs.getString("comisión"));
+                tfContraseña.setText(rs.getString("contraseña"));
             } else{
                 JOptionPane.showMessageDialog(null,"Cliente no encontrado","Cliente no encontrado",JOptionPane.INFORMATION_MESSAGE);
             }
@@ -390,12 +406,14 @@ public class Vendedores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbApellido;
     private javax.swing.JLabel lbComision;
+    private javax.swing.JLabel lbContraseña;
     private javax.swing.JLabel lbEspecialidad;
     private javax.swing.JLabel lbID;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JTable tbVendedores;
     private javax.swing.JTextField tfApellido;
     private javax.swing.JTextField tfComision;
+    private javax.swing.JTextField tfContraseña;
     private javax.swing.JTextField tfEspecialidad;
     private javax.swing.JTextField tfIDBusqueda;
     private javax.swing.JTextField tfNombre;
