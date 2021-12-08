@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan
@@ -22,13 +24,14 @@ import java.util.logging.Logger;
 public class Venta extends javax.swing.JFrame {
 Connection conexion;
 Conexion cone= new Conexion();
+
     /**
      * Creates new form Venta
      */
     public Venta() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        MostrarVendedores();
     }
 
     /**
@@ -41,89 +44,29 @@ Conexion cone= new Conexion();
     private void initComponents() {
 
         lbAtras_C = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        lbNombC = new javax.swing.JLabel();
-        lb_ApellidoC = new javax.swing.JLabel();
-        lbTelefonoC = new javax.swing.JLabel();
-        tfNombre = new javax.swing.JTextField();
-        tfApellido = new javax.swing.JTextField();
-        tfTelefono = new javax.swing.JTextField();
-        btSubirC = new javax.swing.JButton();
-        btBajarC = new javax.swing.JButton();
-        btModificarC = new javax.swing.JButton();
-        lb_IDC = new javax.swing.JLabel();
-        tfID = new javax.swing.JTextField();
-        btBuscarC = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbCliente = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         lbAtras_C1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbCliente1 = new javax.swing.JTable();
+        tbCliente = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tbCliente2 = new javax.swing.JTable();
+        tbVendedores = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tbCliente3 = new javax.swing.JTable();
+        tbCatalogo = new javax.swing.JTable();
         brPDF = new javax.swing.JButton();
 
         lbAtras_C.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         lbAtras_C.setText("Atras <<<");
 
-        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
-        jLabel1.setText("CLIENTE");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbNombC.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lbNombC.setText("Nombre");
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
-        lb_ApellidoC.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lb_ApellidoC.setText("Apellido");
+        lbAtras_C1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        lbAtras_C1.setText("Atras <<<");
 
-        lbTelefonoC.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lbTelefonoC.setText("Telefono");
-
-        tfApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfApellidoActionPerformed(evt);
-            }
-        });
-
-        tfTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTelefonoActionPerformed(evt);
-            }
-        });
-
-        btSubirC.setText("Subir Datos");
-        btSubirC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSubirCActionPerformed(evt);
-            }
-        });
-
-        btBajarC.setText("Dar de baja");
-        btBajarC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBajarCActionPerformed(evt);
-            }
-        });
-
-        btModificarC.setText("Modificar Datos");
-        btModificarC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModificarCActionPerformed(evt);
-            }
-        });
-
-        lb_IDC.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
-        lb_IDC.setText("ID_Cliente");
-
-        btBuscarC.setText("Buscar");
-        btBuscarC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarCActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
+        jLabel2.setText("VENTA");
 
         tbCliente.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -137,20 +80,10 @@ Conexion cone= new Conexion();
                 "ID_Cliente", "Nombre", "Apellido", "Telefono"
             }
         ));
-        jScrollPane1.setViewportView(tbCliente);
+        jScrollPane2.setViewportView(tbCliente);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-
-        lbAtras_C1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        lbAtras_C1.setText("Atras <<<");
-
-        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
-        jLabel2.setText("VENTA");
-
-        tbCliente1.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
-        tbCliente1.setModel(new javax.swing.table.DefaultTableModel(
+        tbVendedores.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        tbVendedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -161,10 +94,10 @@ Conexion cone= new Conexion();
                 "ID_Cliente", "Nombre", "Apellido", "Telefono"
             }
         ));
-        jScrollPane2.setViewportView(tbCliente1);
+        jScrollPane3.setViewportView(tbVendedores);
 
-        tbCliente2.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
-        tbCliente2.setModel(new javax.swing.table.DefaultTableModel(
+        tbCatalogo.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        tbCatalogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -175,21 +108,7 @@ Conexion cone= new Conexion();
                 "ID_Cliente", "Nombre", "Apellido", "Telefono"
             }
         ));
-        jScrollPane3.setViewportView(tbCliente2);
-
-        tbCliente3.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
-        tbCliente3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID_Cliente", "Nombre", "Apellido", "Telefono"
-            }
-        ));
-        jScrollPane4.setViewportView(tbCliente3);
+        jScrollPane4.setViewportView(tbCatalogo);
 
         brPDF.setText("Generar PDF");
         brPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -206,42 +125,42 @@ Conexion cone= new Conexion();
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(330, 330, 330))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(brPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(22, 22, 22)
-                    .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 634, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(brPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94)
+                .addGap(140, 140, 140)
                 .addComponent(brPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(156, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(63, 63, 63)
-                    .addComponent(lbAtras_C1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(503, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,64 +177,9 @@ Conexion cone= new Conexion();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfApellidoActionPerformed
-
-    private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfTelefonoActionPerformed
-
-    private void btSubirCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirCActionPerformed
- 
-    }//GEN-LAST:event_btSubirCActionPerformed
-
-    private void btBajarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBajarCActionPerformed
-
-        
-    }//GEN-LAST:event_btBajarCActionPerformed
-
-    private void btModificarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarCActionPerformed
-        try {
-            String id= tfID.getText().trim();
-            conexion=cone.getConexion();
-            PreparedStatement pst= conexion.prepareStatement("update cliente set Nom=?, Ape=?, Tel=? where ID="+id);
-            pst.setString(1,tfNombre.getText().trim());
-            pst.setString(2, tfApellido.getText().trim());
-            pst.setString(3,tfTelefono.getText().trim());
-            pst.executeUpdate();
-
-           // lbStatus.setText("Modificación exitosa");
-            //MostrarClientes();
-
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_btModificarCActionPerformed
-
-    private void btBuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCActionPerformed
-        try {
-            conexion=cone.getConexion();
-            PreparedStatement pst= conexion.prepareStatement("select * from cliente where ID= ?");
-            pst.setString(1,tfID.getText().trim());
-            ResultSet rs= pst.executeQuery();
-            if (rs.next()) {
-                tfNombre.setText(rs.getString("Nom"));
-                tfApellido.setText(rs.getString("Ape"));
-                tfTelefono.setText(rs.getString("Tel"));
-            } else {
-               // JOptionPane.showMessageDialog(null,"cliente no registrado");
-
-            }
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btBuscarCActionPerformed
-
     private void brPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brPDFActionPerformed
-        Document documento= new Document();
+         Document documento= new Document();
          try {
-            
             String ruta= System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/Desktop/Factura.pdf"));
             documento.open();
@@ -367,33 +231,31 @@ Conexion cone= new Conexion();
             }
         });
     }
-
+    public void MostrarVendedores(){
+        try {
+            
+            conexion=cone.getConexion();
+            Statement stm=conexion.createStatement();
+            ResultSet rs =stm.executeQuery("select * from vendedor");
+            tbVendedores.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
+        }
+  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brPDF;
-    private javax.swing.JButton btBajarC;
-    private javax.swing.JButton btBuscarC;
-    private javax.swing.JButton btModificarC;
-    private javax.swing.JButton btSubirC;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lbAtras_C;
     private javax.swing.JLabel lbAtras_C1;
-    private javax.swing.JLabel lbNombC;
-    private javax.swing.JLabel lbTelefonoC;
-    private javax.swing.JLabel lb_ApellidoC;
-    private javax.swing.JLabel lb_IDC;
+    private javax.swing.JTable tbCatalogo;
     private javax.swing.JTable tbCliente;
-    private javax.swing.JTable tbCliente1;
-    private javax.swing.JTable tbCliente2;
-    private javax.swing.JTable tbCliente3;
-    private javax.swing.JTextField tfApellido;
-    private javax.swing.JTextField tfID;
-    private javax.swing.JTextField tfNombre;
-    private javax.swing.JTextField tfTelefono;
+    private javax.swing.JTable tbVendedores;
     // End of variables declaration//GEN-END:variables
 }
