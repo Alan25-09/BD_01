@@ -54,6 +54,7 @@ public class Catalogo extends javax.swing.JFrame {
         lbDescripcion = new javax.swing.JLabel();
         tfDescripcion = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +124,11 @@ public class Catalogo extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel6.setText("Atras <<<");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         lbDescripcion.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         lbDescripcion.setText("Descripción");
@@ -131,6 +137,13 @@ public class Catalogo extends javax.swing.JFrame {
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -180,7 +193,9 @@ public class Catalogo extends javax.swing.JFrame {
                             .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
-                                .addComponent(btBuscar)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(17, 17, 17)))
                 .addContainerGap())
         );
@@ -216,7 +231,9 @@ public class Catalogo extends javax.swing.JFrame {
                                     .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbID_Catalogo))
                                 .addGap(18, 18, 18)
-                                .addComponent(btBuscar))))
+                                .addComponent(btBuscar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btSubir)
@@ -350,6 +367,20 @@ public class Catalogo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Error","Error de conexion",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    Interfaz inte= new Interfaz();
+    inte.setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    tfExistencia.setText("");
+    tfPrecio.setText("");
+    tfDescripcion.setText("");
+    tfID.setText("");
+    tfNom.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
   public void MostrarCatalogo(){
         try {
             
@@ -405,6 +436,7 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btModificar;
     private javax.swing.JButton btSubir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

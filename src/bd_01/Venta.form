@@ -54,32 +54,92 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lbAtras_C1" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lbAtras_C1" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="lbVendedores" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jScrollPane3" min="-2" pref="255" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="255" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" min="-2" pref="255" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="brPDF" min="-2" pref="101" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="391" max="-2" attributes="0"/>
+                                  <Component id="lbClientes" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lbCatalogo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" min="-2" pref="400" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lbID_cliente" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbID_catalogo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbID_vendedor" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbFecha" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbDescripción" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbTotal" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tfFecha" pref="125" max="32767" attributes="0"/>
+                                          <Component id="tfID_Vendedor" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="tfID_Catalogo" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="tfID_Cliente" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="tfTotal" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="tfDescripción" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btModificar" max="32767" attributes="0"/>
+                                      <Component id="btBajar" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btSubir" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jScrollPane1" min="-2" pref="591" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="btLimpiar" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                          <Component id="lbID_factura" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+                                          <Component id="tfID_Fact" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Component id="btPDF" min="-2" pref="114" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jScrollPane2" min="-2" pref="327" max="-2" attributes="0"/>
+                                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" min="-2" pref="401" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="btBuscar" min="-2" pref="114" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -88,23 +148,83 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lbAtras_C1" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbVendedores" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbCatalogo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane4" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="tfID_Cliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbID_cliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbID_catalogo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfID_Catalogo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbID_vendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfID_Vendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="btSubir" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btBajar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btModificar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbDescripción" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfDescripción" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbTotal" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfTotal" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btPDF" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="btLimpiar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="lbID_factura" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfID_Fact" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" min="-2" pref="191" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" min="-2" pref="191" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="191" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="brPDF" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace pref="156" max="32767" attributes="0"/>
+                  <Component id="btBuscar" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,6 +237,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Atras &lt;&lt;&lt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbAtras_C1MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -198,12 +321,146 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="brPDF">
+        <Component class="javax.swing.JButton" name="btPDF">
           <Properties>
             <Property name="text" type="java.lang.String" value="Generar PDF"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="brPDFActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPDFActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="tbFactura">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="4" rowCount="4">
+                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JTextField" name="tfID_Fact">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfID_Cliente">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfID_Catalogo">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfID_Vendedor">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbID_factura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Numero de la factura"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbID_cliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Numero de Cliente"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbID_catalogo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID_Catalogo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbID_vendedor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID del Vendedor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbFecha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbDescripci&#xf3;n">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Descripci&#xf3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTotal">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Total"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfFecha">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfDescripci&#xf3;n">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfTotal">
+        </Component>
+        <Component class="javax.swing.JButton" name="btSubir">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Subir Datos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSubirActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btBajar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dar de baja"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBajarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btModificar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar Datos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btModificarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btLimpiar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpiar Campos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimpiarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbVendedores">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Agency FB" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Vendedores"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbClientes">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Agency FB" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Clientes"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbCatalogo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Agency FB" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Catalogo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btBuscar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Buscar Datos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

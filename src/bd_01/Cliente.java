@@ -354,7 +354,9 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void lbAtras_CMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAtras_CMouseClicked
-        
+    Interfaz inte= new Interfaz();
+    inte.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_lbAtras_CMouseClicked
 
     public void MostrarClientes(){

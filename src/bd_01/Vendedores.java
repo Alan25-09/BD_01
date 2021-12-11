@@ -56,6 +56,7 @@ public class Vendedores extends javax.swing.JFrame {
         btBuscar = new javax.swing.JButton();
         lbContraseña = new javax.swing.JLabel();
         tfContraseña = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,11 @@ public class Vendedores extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel6.setText("Atras <<<");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
         jLabel1.setText("VENDEDORES");
@@ -136,6 +142,13 @@ public class Vendedores extends javax.swing.JFrame {
         lbContraseña.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         lbContraseña.setText("Contraseña");
 
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,15 +183,20 @@ public class Vendedores extends javax.swing.JFrame {
                 .addComponent(tfIDBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btBuscar)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(181, 181, 181)
-                            .addComponent(jLabel1))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btBuscar)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(181, 181, 181)
+                                    .addComponent(jLabel1))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -198,7 +216,9 @@ public class Vendedores extends javax.swing.JFrame {
                             .addComponent(lbID)
                             .addComponent(tfIDBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(btBuscar))
+                        .addComponent(btBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,6 +365,21 @@ public class Vendedores extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btBuscarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    tfApellido.setText("");
+    tfComision.setText("");
+    tfEspecialidad.setText("");
+    tfIDBusqueda.setText("");
+    tfNombre.setText("");
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    Interfaz inte= new Interfaz();
+    inte.setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -400,6 +435,7 @@ public class Vendedores extends javax.swing.JFrame {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btModificarDatos;
     private javax.swing.JButton btSubirDatos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
