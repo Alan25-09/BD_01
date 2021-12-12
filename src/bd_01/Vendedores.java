@@ -283,7 +283,7 @@ public class Vendedores extends javax.swing.JFrame {
         try {
             String id= tfIDBusqueda.getText().trim();
             conexion=cone.getConexion();
-            PreparedStatement pst= conexion.prepareStatement("update vendedor set nombre=?, apellido=?, especialidad=?, comisión=?, contraseña=? where id_vendedor="+id);
+            PreparedStatement pst= conexion.prepareStatement("update vendedor set nombre=?, apellido=?, especialdad=?, comisión=?, contraseña=? where id_vendedor="+id);
             pst.setString(1, tfNombre.getText().trim());
             pst.setString(2, tfApellido.getText().trim());
             pst.setString(3, tfEspecialidad.getText().trim());
@@ -352,7 +352,7 @@ public class Vendedores extends javax.swing.JFrame {
             if (rs.next()) {
                 tfNombre.setText(rs.getString("nombre"));
                 tfApellido.setText(rs.getString("apellido"));
-                tfEspecialidad.setText(rs.getString("especialidad"));
+                tfEspecialidad.setText(rs.getString("especialdad"));
                 tfComision.setText(rs.getString("comisión"));
                 tfContraseña.setText(rs.getString("contraseña"));
             } else{
@@ -371,6 +371,7 @@ public class Vendedores extends javax.swing.JFrame {
     tfEspecialidad.setText("");
     tfIDBusqueda.setText("");
     tfNombre.setText("");
+    tfContraseña.setText("");
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

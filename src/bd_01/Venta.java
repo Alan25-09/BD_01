@@ -379,7 +379,7 @@ String ID;
     private void btPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPDFActionPerformed
         ID=tfID_Fact.getText().trim();
         pdf.pdf(ID);
-       JOptionPane.showMessageDialog(null, "si","si",JOptionPane.INFORMATION_MESSAGE);
+       JOptionPane.showMessageDialog(null, "PDF Generado","PDF",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btPDFActionPerformed
 
     private void btSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubirActionPerformed

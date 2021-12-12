@@ -356,7 +356,7 @@ public class Catalogo extends javax.swing.JFrame {
                 tfNom.setText(rs.getString("nombre"));
                 tfPrecio.setText(rs.getString("precioUnitario"));
                 tfExistencia.setText(rs.getString("existencia"));
-                tfDescripcion.setText(rs.getString("descripcion"));
+                tfDescripcion.setText(rs.getString("descripción"));
                 
             } else {
                 JOptionPane.showMessageDialog(null,"Articulo no registrado", "Articulo no registrado", JOptionPane.INFORMATION_MESSAGE);

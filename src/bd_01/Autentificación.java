@@ -159,7 +159,7 @@ Conexion cone= new Conexion();
         }
         contra= tfContra.getText();
         if (contra.equals(contraseña)) {
-        JOptionPane.showMessageDialog(null, "Exito","Acceso Permitido",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Acceso Permitido","Exito",JOptionPane.INFORMATION_MESSAGE);
         Interfaz inter= new Interfaz();
         inter.setVisible(true);
         this.setVisible(false);

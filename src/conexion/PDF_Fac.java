@@ -80,8 +80,12 @@ public class PDF_Fac {
                 par3.setAlignment(Element.ALIGN_RIGHT);
                 par3.add(new Phrase("ID del vendedor: "+vendedor, fontparrafo));
                 par3.add(new Phrase(Chunk.NEWLINE));
+                par3.setAlignment(Element.ALIGN_RIGHT);
+                par3.add(new Phrase("ID del cliente:"+cliente,fontparrafo));
+                par3.add(new Phrase(Chunk.NEWLINE));
                 par3.add(new Phrase(Chunk.NEWLINE));
                 par3.setAlignment(Element.ALIGN_RIGHT);
+                
                 
                 documento.add(par3); 
             
